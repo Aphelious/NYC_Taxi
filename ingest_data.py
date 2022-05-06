@@ -6,7 +6,9 @@ engine.connect()
 
 
 def ingest_green_data():
-    df_iter = pd.read_csv('/Users/mike/Desktop/Main/Programming/Projects/Tutorials/Datazoomcamp/week1/2022_jan_yellow.csv', iterator=True, chunksize=50000)
+    df_iter = pd.read_csv(
+        '/Users/mike/Desktop/Main/Programming/Projects/Tutorials/Datazoomcamp/week1/2022_jan_yellow.csv', iterator=True,
+        chunksize=50000)
 
     while True:
         df = next(df_iter)
