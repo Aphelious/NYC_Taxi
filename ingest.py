@@ -19,10 +19,11 @@ df = pd.read_csv('/Users/mike/Desktop/Main/Programming/Projects/Tutorials/Datazo
 #     print("Inserted another chunk...")
 
 # print(pd.io.sql.get_schema(df, name='yellow_taxi_data', con=engine))
+def ingest_green_data():
+    df = pd.read_csv('/Users/mike/Desktop/Main/Programming/Projects/Tutorials/Datazoomcamp/week1/2022_jan_green.csv')
 
-df.head(0).to_sql(name='green_taxi_data', con=engine, if_exists='replace')
+    df["lpep_pickup_datetime"] = pd.to_datetime(df["lpep_pickup_datetime"])
+    df["lpep_dropoff_datetime"] = pd.to_datetime(df["lpep_dropoff_datetime"])
 
-df["lpep_pickup_datetime"] = pd.to_datetime(df["lpep_pickup_datetime"])
-df["lpep_dropoff_datetime"] = pd.to_datetime(df["lpep_dropoff_datetime"])
-
-df.to_sql(name='green_taxi_data', con=engine, if_exists='replace')
+    df.head(0).to_sql(name='green_taxi_data', con=engine, if_exists='replace')
+    df.to_sql(name='green_taxi_data', con=engine, if_exists='replace')
